@@ -14,7 +14,7 @@ export default function Off() {
         animate={{ y: [0, 5, 0] }}
         transition={{ duration: 1, repeat: Infinity }}
       >
-        <h1 className="text-white">
+        <h1 className="text-white text-xs md:text-sm lg:text-base line-clamp-1 md:line-clamp-none">
           🎉 Get $10 Off Your First Service! Find Your Authorized Service
           Location Today!
         </h1>
