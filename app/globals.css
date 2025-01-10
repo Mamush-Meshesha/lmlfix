@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  overflow-x: hidden;
-}
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -263,7 +261,7 @@ body {
 body {
   margin: 0;
   font-family: var(--font-karla), sans-serif;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .bg-blue-100 {

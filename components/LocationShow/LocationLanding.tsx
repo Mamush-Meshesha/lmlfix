@@ -1,3 +1,4 @@
+"use client"
 import React from "react";
 import bg from "@/public/broken-iphone.png";
 import quick from "@/public/add.png";
@@ -15,6 +16,8 @@ import {
 
 import Link from "next/link";
 import { Card } from "../ui/card";
+import ScrollAnimation from "../animation/scrollbased";
+import { fadeIn, slidedown, slideup } from "@/utils/animation";
 
 export type LocationLandingProps = {
   location: string;
@@ -33,7 +36,6 @@ export default function LocationLanding({
 }: {
   data: LocationLandingProps;
 }) {
-
   return (
     <div
       className="min-h-screen bg-center bg-cover bg-fixed relative text-white"
@@ -72,68 +74,70 @@ export default function LocationLanding({
         </div>
       </div>
 
-
-
       <div className="rounded-md w-full p-5 bg-white">
         <div className="bg-white gap-5 text-black container mx-auto py-10 ">
-    
           <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
             <div className="flex flex-col gap-5">
-              <Card>
-                <div className="p-6">
-                  <h1 className="text-2xl font-bold">{data.location}</h1>
-                  <div className="flex gap-3 pt-3">
-                    <PhoneCall color="#ff3b3b" />
-                    <div>
-                      <h1>Phone Number</h1>
-                      <p className="text-[#737b86]">{data.number}</p>
+              <ScrollAnimation animation={fadeIn}>
+                <Card>
+                  <div className="p-6 ">
+                    <h1 className="text-2xl font-bold">{data.location}</h1>
+                    <div className="flex gap-3 pt-3">
+                      <PhoneCall color="#ff3b3b" />
+                      <div>
+                        <h1>Phone Number</h1>
+                        <p className="text-[#737b86]">{data.number}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <MapPinCheckIcon color="#ff3b3b" />
+                      <div>
+                        <h1>Address</h1>
+                        <p className="text-[#737b86]">{data.address}</p>
+                      </div>
+                    </div>
+                    <div className="flex gap-3">
+                      <Building2 color="#ff3b3b" />
+                      <div>
+                        <h1>Building Details</h1>
+                        <p className="text-[#737b86]">{data.building} </p>
+                      </div>
                     </div>
                   </div>
-                  <div className="flex gap-3">
-                    <MapPinCheckIcon color="#ff3b3b" />
-                    <div>
-                      <h1>Address</h1>
-                      <p className="text-[#737b86]">{data.address}</p>
-                    </div>
-                  </div>
-                  <div className="flex gap-3">
-                    <Building2 color="#ff3b3b" />
-                    <div>
-                      <h1>Building Details</h1>
-                      <p className="text-[#737b86]">{data.building} </p>
-                    </div>
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </ScrollAnimation>
 
               {/* find us */}
+              <ScrollAnimation animation={slidedown}>
+                <Card>
+                  <div className="p-6">
+                    <h1 className="text-2xl font-bold">How to find us</h1>
+                    <div className="flex flex-col gap-3 pt-4">
+                      {data.steps.map((step, index) => (
+                        <div key={index} className="flex gap-3">
+                          <ArrowRight size={18} color="#ff3b3b" />
+                          <p>{step}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </Card>
+              </ScrollAnimation>
+            </div>
+            <ScrollAnimation animation={slideup}>
               <Card>
                 <div className="p-6">
-                  <h1 className="text-2xl font-bold">How to find us</h1>
-                  <div className="flex flex-col gap-3 pt-4">
-                    {data.steps.map((step, index) => (
-                      <div key={index} className="flex gap-3">
-                        <ArrowRight size={18} color="#ff3b3b" />
-                        <p>{step}</p>
-                      </div>
-                    ))}
-                
+                  <h1 className="text-2xl font-bold">Our Location</h1>
+                  <div className="mt-5">
+                    <iframe
+                      className="w-full h-96 border-0 rounded-xl"
+                      src=" https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
+                      title="Shop Location"
+                    ></iframe>
                   </div>
                 </div>
               </Card>
-            </div>
-            <Card>
-              <div className="p-6">
-                <h1 className="text-2xl font-bold">Our Location</h1>
-                <div className="mt-5">
-                  <iframe
-                    className="w-full h-96 border-0 rounded-xl"
-                    src=" https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
-                    title="Shop Location"
-                  ></iframe>
-                </div>
-              </div>
-            </Card>
+            </ScrollAnimation>
           </div>
         </div>
       </div>

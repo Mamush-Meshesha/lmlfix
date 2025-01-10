@@ -11,6 +11,8 @@ import quick from "@/public/add.png";
 import quality from "@/public/app-development.png";
 import fast from "@/public/clock.png";
 import Services from "./Cards/service";
+import { fadeIn, slideIn, scaleUp, slideup } from "../utils/animation";
+
 
 import {
   Select,
@@ -21,10 +23,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
+import ScrollAnimation from "./animation/scrollbased";
 
 function LandingContentOne() {
   const router = useRouter();
-
+const animations = [fadeIn, scaleUp, slideup];
   const data = [
     {
       name: "Quick Diagnostic",
@@ -66,17 +69,16 @@ function LandingContentOne() {
           <p>Professional repair services for all your devices</p>
         </div>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10 py-10">
-          {data.map((data) => (
-            <Card
-              key={data.name}
-              className="p-7  bg-[#f2f2f2] hover:shadow-lg hover:border transition-all duration-400 ease-in-out"
-            >
-              <Services
-                name={data.name}
-                images={data.images}
-                description={data.description}
-              />
-            </Card>
+          {data.map((data, index) => (
+            <ScrollAnimation animation={animations[index % animations.length]} key={data.name}>
+              <Card className="p-7  bg-[#f2f2f2] hover:shadow-lg hover:border transition-all duration-400 ease-in-out">
+                <Services
+                  name={data.name}
+                  images={data.images}
+                  description={data.description}
+                />
+              </Card>
+            </ScrollAnimation>
           ))}
         </div>
         <div className="">
@@ -112,98 +114,104 @@ function LandingContentOne() {
 
           <Separator />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 px-1 my-10 w-full">
-            <Card className="p-7 bg-[#f2f2f2]">
-              <Link href="/westseattle">
-                <div className="">
-                  <h1 className="text-2xl font-bold pb-4">West Seattle</h1>
-                  <div className="flex space-x-3">
-                    <Locate className="text-blue-500" />
-                    <p>123 Pike Street, Seattle, WA 98101</p>
+            <ScrollAnimation animation={fadeIn}>
+              <Card className="p-7 bg-[#f2f2f2]">
+                <Link href="/westseattle">
+                  <div className="">
+                    <h1 className="text-2xl font-bold pb-4">West Seattle</h1>
+                    <div className="flex space-x-3">
+                      <Locate className="text-blue-500" />
+                      <p>123 Pike Street, Seattle, WA 98101</p>
+                    </div>
+                    <div className="flex py-2 space-x-3">
+                      <PhoneCall size={16} className="text-blue-500 " />
+                      <p>(206) 555-0123</p>
+                    </div>
+                    <div className=" h-[300px]">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
+                        className="w-full h-full border-0 rounded-md"
+                        aria-hidden="false"
+                        title="Shop Location"
+                      ></iframe>
+                    </div>
+                    <div>
+                      <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
+                      <p>Sat: 10:00 AM - 4:00 PM</p>
+                      <p>Sun: Closed</p>
+                      <p className="text-[#FFD700] text-2xl">★★★★★</p>
+                      <p>4.8/5 based on 150 reviews</p>
+                    </div>
                   </div>
-                  <div className="flex py-2 space-x-3">
-                    <PhoneCall size={16} className="text-blue-500 " />
-                    <p>(206) 555-0123</p>
-                  </div>
-                  <div className=" h-[300px]">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
-                      className="w-full h-full border-0 rounded-md"
-                      aria-hidden="false"
-                      title="Shop Location"
-                    ></iframe>
-                  </div>
-                  <div>
-                    <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
-                    <p>Sat: 10:00 AM - 4:00 PM</p>
-                    <p>Sun: Closed</p>
-                    <p className="text-[#FFD700] text-2xl">★★★★★</p>
-                    <p>4.8/5 based on 150 reviews</p>
-                  </div>
-                </div>
-              </Link>
-            </Card>
+                </Link>
+              </Card>
+            </ScrollAnimation>
 
-            <Card className="p-7 bg-[#f2f2f2]">
-              <Link href="/westseattle">
-                <div className="">
-                  <h1 className="text-2xl font-bold pb-4">Seattle</h1>
-                  <div className="flex space-x-3">
-                    <Locate className="text-blue-500" />
-                    <p>123 Pike Street, Seattle, WA 98101</p>
+            <ScrollAnimation animation={scaleUp}>
+              <Card className="p-7 bg-[#f2f2f2]">
+                <Link href="/westseattle">
+                  <div className="">
+                    <h1 className="text-2xl font-bold pb-4">Seattle</h1>
+                    <div className="flex space-x-3">
+                      <Locate className="text-blue-500" />
+                      <p>123 Pike Street, Seattle, WA 98101</p>
+                    </div>
+                    <div className="flex py-2 space-x-3">
+                      <PhoneCall size={16} className="text-blue-500 " />
+                      <p>(206) 555-0123</p>
+                    </div>
+                    <div className=" h-[300px]">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
+                        className="w-full h-full border-0 rounded-md"
+                        aria-hidden="false"
+                        title="Shop Location"
+                      ></iframe>
+                    </div>
+                    <div>
+                      <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
+                      <p>Sat: 10:00 AM - 4:00 PM</p>
+                      <p>Sun: Closed</p>
+                      <p className="text-[#FFD700] text-2xl">★★★★★</p>
+                      <p>4.8/5 based on 150 reviews</p>
+                    </div>
                   </div>
-                  <div className="flex py-2 space-x-3">
-                    <PhoneCall size={16} className="text-blue-500 " />
-                    <p>(206) 555-0123</p>
-                  </div>
-                  <div className=" h-[300px]">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
-                      className="w-full h-full border-0 rounded-md"
-                      aria-hidden="false"
-                      title="Shop Location"
-                    ></iframe>
-                  </div>
-                  <div>
-                    <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
-                    <p>Sat: 10:00 AM - 4:00 PM</p>
-                    <p>Sun: Closed</p>
-                    <p className="text-[#FFD700] text-2xl">★★★★★</p>
-                    <p>4.8/5 based on 150 reviews</p>
-                  </div>
-                </div>
-              </Link>
-            </Card>
+                </Link>
+              </Card>
+            </ScrollAnimation>
 
-            <Card className="p-7 bg-[#f2f2f2]">
-              <Link href="/westseattle">
-                <div className="">
-                  <h1 className="text-2xl font-bold pb-4">North Seattle</h1>
-                  <div className="flex space-x-3">
-                    <Locate className="text-blue-500" />
-                    <p>123 Pike Street, Seattle, WA 98101</p>
+            <ScrollAnimation animation={slideIn}>
+              <Card className="p-7 bg-[#f2f2f2]">
+                <Link href="/westseattle">
+                  <div className="">
+                    <h1 className="text-2xl font-bold pb-4">North Seattle</h1>
+                    <div className="flex space-x-3">
+                      <Locate className="text-blue-500" />
+                      <p>123 Pike Street, Seattle, WA 98101</p>
+                    </div>
+                    <div className="flex py-2 space-x-3">
+                      <PhoneCall size={16} className="text-blue-500 " />
+                      <p>(206) 555-0123</p>
+                    </div>
+                    <div className=" h-[300px]">
+                      <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
+                        className="w-full h-full border-0 rounded-md"
+                        aria-hidden="false"
+                        title="Shop Location"
+                      ></iframe>
+                    </div>
+                    <div>
+                      <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
+                      <p>Sat: 10:00 AM - 4:00 PM</p>
+                      <p>Sun: Closed</p>
+                      <p className="text-[#FFD700] text-2xl">★★★★★</p>
+                      <p>4.8/5 based on 150 reviews</p>
+                    </div>
                   </div>
-                  <div className="flex py-2 space-x-3">
-                    <PhoneCall size={16} className="text-blue-500 " />
-                    <p>(206) 555-0123</p>
-                  </div>
-                  <div className=" h-[300px]">
-                    <iframe
-                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d86135.66264469302!2d-122.52284050273434!3d47.572857500000005!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5490435d141069cd%3A0x8949cfda1da34803!2sLML%20Repair%20-%20Same%20Day%20Phone%20%26%20Tablet%20Repair!5e0!3m2!1sen!2sus!4v1722519680294!5m2!1sen!2sus"
-                      className="w-full h-full border-0 rounded-md"
-                      aria-hidden="false"
-                      title="Shop Location"
-                    ></iframe>
-                  </div>
-                  <div>
-                    <p>Mon-Fri: 9:00 AM - 6:00 PM</p>
-                    <p>Sat: 10:00 AM - 4:00 PM</p>
-                    <p>Sun: Closed</p>
-                    <p className="text-[#FFD700] text-2xl">★★★★★</p>
-                    <p>4.8/5 based on 150 reviews</p>
-                  </div>
-                </div>
-              </Link>
-            </Card>
+                </Link>
+              </Card>
+            </ScrollAnimation>
           </div>
 
           {/* services */}
