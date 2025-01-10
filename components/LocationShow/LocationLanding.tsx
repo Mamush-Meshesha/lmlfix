@@ -1,9 +1,6 @@
 "use client"
 import React from "react";
 import bg from "@/public/broken-iphone.png";
-import quick from "@/public/add.png";
-import quality from "@/public/app-development.png";
-import fast from "@/public/clock.png";
 import PrimaryButton from "../Buttons/PrimaryButton";
 import {
   ArrowRight,
