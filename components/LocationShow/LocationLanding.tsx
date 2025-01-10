@@ -77,7 +77,7 @@ export default function LocationLanding({
       <div className="rounded-md w-full p-5 bg-white">
         <div className="bg-white gap-5 text-black container mx-auto py-10 ">
     
-          <div className="grid grid-cols-2 gap-10">
+          <div className="grid md:grid-cols-2 grid-cols-1 gap-10">
             <div className="flex flex-col gap-5">
               <Card>
                 <div className="p-6">
