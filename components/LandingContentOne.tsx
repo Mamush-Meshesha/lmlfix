@@ -1,9 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Separator } from "@/components/ui/separator";
-import logo from "@/public/lml_logo.png";
-import svg from "@/public/takein.svg";
-import Image from "next/image";
 import { Card } from "./ui/card";
 import Link from "next/link";
 import { Locate, PhoneCall } from "lucide-react";
@@ -17,9 +14,7 @@ import { fadeIn, slideIn, scaleUp, slideup } from "../utils/animation";
 import {
   Select,
   SelectContent,
-  SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "./ui/select";
