@@ -43,4 +43,4 @@ jobs:
         run: docker build -t lmlfix .
 
       - name: Push Docker image to Docker Hub
-        run: docker tag lmlfix mydockerhubusername/lmlfix:latest && docker push mydockerhubusername/lmlfix:latest
+        run: docker tag lmlfix mamush123/lmlfix:latest && docker push mamush123/lmlfix:latest
