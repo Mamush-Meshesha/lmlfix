@@ -40,7 +40,7 @@ jobs:
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Build and tag Docker image
-        run: docker build -t my-nextjs-app .
+        run: docker build -t lmlfix .
 
       - name: Push Docker image to Docker Hub
-        run: docker tag my-nextjs-app mydockerhubusername/my-nextjs-app:latest && docker push mydockerhubusername/my-nextjs-app:latest
+        run: docker tag lmlfix mydockerhubusername/lmlfix:latest && docker push mydockerhubusername/lmlfix:latest
